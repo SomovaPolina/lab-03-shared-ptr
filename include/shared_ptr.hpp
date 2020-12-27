@@ -10,16 +10,16 @@
 #include <utility>
 
 template <typename T>
-class shared_ptr {
+class SharedPtr {
  public:
   SharedPtr(){
-      ptr= nullptr;
-      count_ptr=nullptr;
+      ptr = nullptr;
+      count_ptr = nullptr;
   };
 
-  explicit SharedPtr(T* ptr){
-    ptr=point;
-      if (point==nullptr){
+  explicit SharedPtr(T* point) {
+    ptr = point;
+      if (point == nullptr){
         count_ptr = nullptr;
       } else {
         count_ptr = new std::atomic_uint ;
@@ -33,7 +33,7 @@ class shared_ptr {
       if (ptr){
         *count_ptr = *count_ptr+1;
       } else {
-        *count_ptr=nullptr;
+        count_ptr = nullptr;
       }
   };
 
@@ -45,12 +45,12 @@ class shared_ptr {
   };
 
   ~SharedPtr(){
-      if (coun_ptr){
-        *count_ptr==1{
+      if (count_ptr){
+        if (*count_ptr==1) {
           delete ptr;
           delete count_ptr;
         } else {
-          *count_ptr=count_ptr-1;
+          *count_ptr = *count_ptr-1;
         }
       }
       ptr=nullptr;
@@ -113,7 +113,7 @@ class shared_ptr {
       count_ptr=nullptr;
   };
 
-  void reset(T* ptr){
+  void reset(T* point){
       if(*count_ptr==1){
         delete ptr;
         delete count_ptr;
