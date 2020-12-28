@@ -17,9 +17,9 @@ class SharedPtr {
       count_ptr = nullptr;
   };
 
-  explicit SharedPtr(T* point) {
-    ptr = point;
-      if (point == nullptr){
+  explicit SharedPtr(T* pointer) {
+     ptr=pointer;
+     if (pointer == nullptr){
         count_ptr = nullptr;
       } else {
         count_ptr = new std::atomic_uint ;
@@ -57,7 +57,7 @@ class SharedPtr {
       count_ptr=nullptr;
   };
 
-  auto operator=(const SharedPtr& r) -> SharedPtr&{
+  auto operator=(const SharedPtr& r) -> SharedPtr& {
       if (this !=&r) {
       ptr = r.ptr;
       count_ptr = r.count_ptr;
@@ -70,7 +70,7 @@ class SharedPtr {
     return *this;
   };
 
-  auto operator=(SharedPtr&& r) -> SharedPtr&{
+  auto operator=(SharedPtr&& r) -> SharedPtr& {
       if(this!=&r){
         ptr=r.ptr;
         count_ptr=r.count_ptr;
@@ -113,15 +113,15 @@ class SharedPtr {
       count_ptr=nullptr;
   };
 
-  void reset(T* point){
+  void reset(T* pointer){
       if(*count_ptr==1){
         delete ptr;
         delete count_ptr;
-      }else{
-        *count_ptr=*count_ptr-1;
+      }else {
+        *count_ptr = *count_ptr - 1;
       }
-      ptr=point;
-      if(point==nullptr){
+      ptr=pointer;
+      if(pointer==nullptr){
         count_ptr=nullptr;
       }else{
         count_ptr=new std::atomic_uint;
