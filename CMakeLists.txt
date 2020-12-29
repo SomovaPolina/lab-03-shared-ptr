@@ -21,9 +21,10 @@ HunterGate(
 
 
 
-project(lr3_shared_ptr)
+project(lab-03-shared-ptr)
 string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
 string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
+string(APPEND CMAKE_CXX_FLAGS " -lgcov --coverage")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 hunter_add_package(GTest)
