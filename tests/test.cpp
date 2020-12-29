@@ -1,4 +1,3 @@
-// Copyright 2020 Your Name <your_email>
 
 #include <gtest/gtest.h>
 #include <shared_ptr.hpp>
@@ -78,6 +77,23 @@ ptr.reset();
 EXPECT_EQ(ptr.get(), nullptr);
 }
 
+TEST (test_method, reset_test_point) {
+  int *points = new int (922);
+  int *points1 = new int (279);
+  SharedPtr <int> ptr(points);
+  ptr.reset(points1);
+  EXPECT_EQ(ptr.get(),points1);
+}
+
+TEST(test_method, swap_test) {
+  int *points = new int (922);
+  int *points1 = new int (279);
+  SharedPtr <int> ptr(points);
+  SharedPtr <int> ptr1(points1);
+  ptr.swap(ptr1);
+  EXPECT_EQ(ptr.get(), points1);
+  EXPECT_EQ(ptr1.get(), points);
+}
 
 TEST(test_is_move, assign_construct_test) {
 EXPECT_EQ(std::is_move_assignable<SharedPtr<int>>::value, true);//проверяет является ли тип присваиваемым при перемещении
