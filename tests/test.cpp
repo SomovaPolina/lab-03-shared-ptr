@@ -82,7 +82,7 @@ TEST (test_method, reset_test_point) {
   int *points1 = new int (279);
   SharedPtr <int> ptr(points);
   ptr.reset(points1);
-  EXPECT_EQ(ptr.get(),points1);
+  EXPECT_EQ(ptr.get(), points1);
 }
 
 TEST(test_method, swap_test) {
